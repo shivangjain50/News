@@ -1,5 +1,5 @@
-Kotlin + MVVM + Clean Architecture + jetpack Compose + Dagger Hilt
-
+**Kotlin + MVVM + Clean Architecture + jetpack Compose + Dagger Hilt
+**
 News App
 
 Having List of News with desciption
@@ -11,6 +11,7 @@ MVVM
 Clean Architecture
 Jetpack Compose
 Dagger Hilt
+JUnit
 
 
 
