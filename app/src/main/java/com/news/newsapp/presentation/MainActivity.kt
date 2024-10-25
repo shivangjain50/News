@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "article_list_screen"
+                        startDestination = Screen.ArticleListScreen.route
                     ) {
                         composable(
                             route = Screen.ArticleListScreen.route
