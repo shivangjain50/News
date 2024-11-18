@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.news.newsapp.domain.use_case.get_news_articles.GetNewsArticleListUseCase
+import com.news.newsapp.utils.Constants
 import com.news.newsapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -32,7 +33,7 @@ class NewsArticleListViewModel @Inject constructor(
 
                 is Resource.Error -> {
                     _state.value = NewsArticleListState(
-                        error = result.message ?: "An unexpected error occurred"
+                        error = result.message ?: Constants.UNEXPECTED_ERROR
                     )
                 }
 
