@@ -7,21 +7,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import coil3.compose.AsyncImage
 import com.news.newsapp.data.remote.dto.Article
-import com.news.newsapp.presentation.news_article_description.components.ArticleDescription
-import com.news.newsapp.presentation.news_article_description.components.ArticleImage
-import com.news.newsapp.presentation.news_article_description.components.ArticleTitle
-import com.news.newsapp.presentation.news_article_description.components.SourceTitle
 
 @Composable
 fun ArticleDescriptionScreen(article: Article?) {
@@ -37,13 +32,31 @@ fun ArticleDescriptionScreen(article: Article?) {
                         modifier = Modifier.fillMaxWidth(),
 
                         ) {
-                        ArticleTitle(article.title)
+                        Text(
+                            text = article.title,
+                            style = MaterialTheme.typography.titleMedium,
+                            overflow = TextOverflow.Ellipsis
+                        )
                         Spacer(modifier = Modifier.height(15.dp))
-                        ArticleImage(article.urlToImage)
+                        AsyncImage(
+                            article.urlToImage,
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            contentDescription = article.description,
+                            contentScale = ContentScale.FillBounds
+                        )
                         Spacer(modifier = Modifier.height(15.dp))
-                        ArticleDescription(article.description)
+                        Text(
+                            text = article.description,
+                            style = MaterialTheme.typography.bodyMedium,
+                            overflow = TextOverflow.Ellipsis
+                        )
                         Spacer(modifier = Modifier.height(30.dp))
-                        SourceTitle(article.source.name)
+                        Text(
+                            text = "Source - ${article.source.name}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            overflow = TextOverflow.Ellipsis
+                        )
 
                     }
                 }

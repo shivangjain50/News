@@ -2,6 +2,7 @@ package com.news.newsapp.domain.use_case.get_news_articles
 
 import com.news.newsapp.data.remote.dto.Article
 import com.news.newsapp.domain.repository.NewsRepository
+import com.news.newsapp.utils.Constants
 import com.news.newsapp.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,9 +18,9 @@ class GetNewsArticleListUseCase  @Inject constructor(private val repository: New
             val news = repository.getNews().toNews()
             emit(Resource.Success(news.articles))
         } catch(e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
+            emit(Resource.Error(e.localizedMessage ?: Constants.UNEXPECTED_ERROR))
         } catch(e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error(Constants.TIMEOUT_ERROR))
         }
     }
 }
